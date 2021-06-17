@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:star_app/services/http.dart' as http;
+
 class Homepage extends StatefulWidget {
   Homepage({Key? key, required this.title}) : super(key: key);
 
@@ -14,6 +16,11 @@ class _HomepageState extends State<Homepage> {
 
   void _incrementCounter() => setState(() => _counter++);
   void _decrementCounter() => setState(() => _counter--);
+
+  void pull() async {
+    _incrementCounter();
+    print(await http.getPerson());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +48,7 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: pull,
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
